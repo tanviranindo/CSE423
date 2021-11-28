@@ -44,5 +44,3 @@ class Task02 implements GLEventListener {
 
     }
 }
-
-
