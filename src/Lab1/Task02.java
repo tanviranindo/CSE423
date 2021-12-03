@@ -25,21 +25,17 @@ class Task02 implements GLEventListener {
         GL2 gl = drawable.getGL ().getGL2 ();
         gl.glClear (GL2.GL_COLOR_BUFFER_BIT);
 
-
-        gl.glColor3d (0, 0, 0);
-        DDAPlain (gl, 150, 100, 100, 450);
-
         gl.glColor3d (0, 0, 255);
         DDADot (gl, 150, 260, 270, 270);
 
         gl.glColor3d (0, 0, 255);
         DDAPlain (gl, 150, 350, 450, 450);
 
-
         gl.glColor3d (0, 0, 255);
         DDAPlain (gl, 150, 350, 100, 100);
 
-        gl.glEnd ();
+        gl.glColor3d (0, 0, 0);
+        DDAPlain (gl, 150, 100, 100, 450);
     }
 
     private void DDAPlain(GL2 gl, int x1, int x2, int y1, int y2) {
@@ -47,56 +43,60 @@ class Task02 implements GLEventListener {
         int diffY = y2 - y1;
         int steps = Math.max (Math.abs (diffX), Math.abs (diffY));
 
-        int x_inc = diffX / steps;
-        int y_inc = diffY / steps;
+        int x = diffX / steps;
+        int y = diffY / steps;
 
-        gl.glPointSize (2.0f);
+        gl.glPointSize (5.0f);
         gl.glBegin (GL2.GL_POINTS);
         for (int i = 0; i < steps; i++) {
             gl.glVertex2d (Math.round (x1), Math.round (y1));
-            x1 += x_inc;
-            y1 += y_inc;
+            x1 += x;
+            y1 += y;
         }
+        gl.glEnd ();
     }
 
     private void DDADot(GL2 gl, int x1, int x2, int y1, int y2) {
-        int delX = x2 - x1;
-        int delY = y2 - y1;
-        int steps = Math.max (Math.abs (delX), Math.abs (delY));
-
+        int diffX = x2 - x1;
+        int diffY = y2 - y1;
         int mod = 0;
 
-        gl.glPointSize (1.0f);
-        gl.glBegin (GL2.GL_POINTS);
-        if (y1 == y2) {
-            while (x1 < x2) {
-                x1 += 1;
-                if (mod % 2 == 0) gl.glVertex2d (Math.round (x1), Math.round (y1));
-                mod += 1;
-            }
-        } else if (x1 == x2) {
+        gl.glPointSize (3.0f);
+        if (x1 == x2) {
+            gl.glBegin (GL2.GL_POINTS);
             while (y1 < y2) {
                 y1 += 1;
-                if (mod % 4 == 0) gl.glVertex2d (Math.round (x1), Math.round (y1));
+                if (mod % 4 == 0) gl.glVertex2f (Math.round (x1), Math.round (y1));
                 mod += 1;
             }
+            gl.glEnd ();
+        } else if (y1 == y2) {
+            gl.glBegin (GL2.GL_POINTS);
+            while (x1 < x2) {
+                x1 += 1;
+                if (mod % 2 == 0) gl.glVertex2f (Math.round (x1), Math.round (y1));
+                mod += 1;
+            }
+            gl.glEnd ();
         } else {
-            float slope = delY - delX;
-            if (-1 < slope && slope > 1) {
+            float slope = diffY - diffX;
+            gl.glBegin (GL2.GL_POINTS);
+            if (slope > 1) {             //(-1 < slope && slope > 1)
                 while (x1 < x2) {
-                    x1 = x1 + 1;
+                    x1 += 1;
                     y1 += slope;
-                    if (mod % 2 == 0) gl.glVertex2d (Math.round (x1), Math.round (y1));
+                    if (mod % 2 == 0) gl.glVertex2f (Math.round (x1), Math.round (y1));
                     mod += 1;
                 }
             } else {
                 while (y1 < y2) {
                     x1 += slope;
                     y1 += 1;
-                    if (mod % 2 == 0) gl.glVertex2d (Math.round (x1), Math.round (y1));
+                    if (mod % 2 == 0) gl.glVertex2f (Math.round (x1), Math.round (y1));
                     mod += 1;
                 }
             }
+            gl.glEnd ();
         }
     }
 
