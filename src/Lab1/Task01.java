@@ -11,16 +11,14 @@ class Task01 implements GLEventListener {
         GL2 gl = gld.getGL ().getGL2 ();
         GLU glu = new GLU ();
 
-        gl.glMatrixMode (GL2.GL_PROJECTION);
-        gl.glLoadIdentity ();
-
         int width = 500;
         int height = 600;
 
-        glu.gluOrtho2D (0.0f, width, 0.0f, height);
-        gl.glMatrixMode (GL2.GL_MODELVIEW);
-        gl.glLoadIdentity ();
+        gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glViewport (0, 0, width, height);
+        gl.glMatrixMode (GL2.GL_PROJECTION);
+        gl.glLoadIdentity ();
+        glu.gluOrtho2D (0.0f, width, 0.0f, height);
     }
 
     public void display(GLAutoDrawable drawable) {
