@@ -3,8 +3,13 @@ package Lab1;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
-
 import javax.swing.*;
+
+/**
+ * @author Tanvir Rahman
+ * @ID 19101268
+ * @Section 04
+ **/
 
 public class Lab01_19101268 {
 

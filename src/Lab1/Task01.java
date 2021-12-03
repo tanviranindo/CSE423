@@ -5,6 +5,13 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.glu.GLU;
 
+/**
+ * @author Tanvir Rahman
+ * @ID 19101268
+ * @Section 04
+ **/
+
+
 class Task01 implements GLEventListener {
 
     public void init(GLAutoDrawable gld) {
