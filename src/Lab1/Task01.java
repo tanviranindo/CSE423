@@ -11,7 +11,6 @@ import com.jogamp.opengl.glu.GLU;
  * @Section 04
  **/
 
-
 class Task01 implements GLEventListener {
 
     public void init(GLAutoDrawable gld) {
